@@ -11,7 +11,7 @@ COMMON_TPL_DIR      = TEMPLATES_DIR / "common"
 FRAMEWORKS_TPL_ROOT = TEMPLATES_DIR / "frameworks"
 SUPPORTED = {f.value for f in Frameworks}
 
-base_deps = ["a2a-sdk", "uvicorn", "click"]
+base_deps = ["a2a-sdk", "uvicorn", "click", "protobuf>=6.31.1"]
 framework_deps_map = {
     "openai":    ["agents", "openai"],
     "langgraph": ["langgraph"],
