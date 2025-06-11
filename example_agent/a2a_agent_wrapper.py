@@ -1,10 +1,10 @@
-from {{ agent_file_name }} import {{ agent_export_name }}
+from agent import intern_agent
 from agents import Runner
 from openai.types.responses import ResponseTextDeltaEvent
 
 class a2aAgentWrapper:
     def __init__(self):
-        self.agent = {{ agent_export_name }}
+        self.agent = intern_agent
 
     async def invoke(self, query, sessionId):
         try:
@@ -49,4 +49,3 @@ class a2aAgentWrapper:
             }
 
     SUPPORTED_CONTENT_TYPES = ["text", "text/plain"]
-

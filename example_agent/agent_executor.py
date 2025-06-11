@@ -41,7 +41,7 @@ class a2aAgentExecutor(AgentExecutor):
             event_queue.enqueue_event(task)
 
         # 2) Decide between invoke vs. streaming
-        can_stream = {{ capabilities.streaming }}
+        can_stream = False
         accept_hdr = context.request.headers.get("accept", "")
         stream_qp  = context.request.query_params.get("stream", "").lower()
         want_stream = can_stream and (
@@ -99,27 +99,23 @@ class a2aAgentExecutor(AgentExecutor):
 
 def get_agent_card(host: str, port: int) -> AgentCard:
     caps = AgentCapabilities(
-        streaming={{ capabilities.streaming | lower }},
-        pushNotifications={{ capabilities.pushNotifications | lower }}
+        streaming=false,
+        pushNotifications=true
     )
-    skills = [
-    {%- for skill in skills %}
-        AgentSkill(
-            id="{{ skill.id }}",
-            name="{{ skill.name }}",
-            description="{{ skill.description }}",
-            tags={{ skill.tags }},
-            examples={{ skill.examples }},
-        ),
-    {%- endfor %}
-    ]
+    skills = [        AgentSkill(
+            id="reddit_search",
+            name="Search Reddit and parse posts",
+            description="Fetches Reddit posts, parses them, writes to file, returns summary",
+            tags=['reddit', 'internship', 'parsing'],
+            examples=['Topic: Google SRE internship…'],
+        ),    ]
     return AgentCard(
-        name="{{ name }}",
-        description="{{ description }}",
-        url=f"{{ url }}",
-        version="{{ version }}",
-        defaultInputModes={{ defaultInputModes }},
-        defaultOutputModes={{ defaultOutputModes }},
+        name="InternDB Reddit Agent",
+        description="Searches Reddit for internship processes, parses posts, writes results, returns summary",
+        url=f"http://localhost:10003/",
+        version="1.0.0",
+        defaultInputModes=['text/plain'],
+        defaultOutputModes=['text/plain'],
         capabilities=caps,
         skills=skills,
     )
@@ -143,7 +139,7 @@ def main(host: str, port: int):
     config = uvicorn.Config(app=app, host=host, port=port, lifespan="auto")
     server = uvicorn.Server(config)
 
-    click.echo(f"🚀 Starting A2A server on {{ url }}")
+    click.echo(f"🚀 Starting A2A server on http://localhost:10003/")
     asyncio.run(server.serve())
 
 

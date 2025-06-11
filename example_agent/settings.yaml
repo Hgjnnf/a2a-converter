@@ -1,0 +1,33 @@
+# Stub configuration for Divy A2A agent server
+# Fill in all fields, then run `python cli.py convert`
+
+# === Agent and Framework Import ===
+agent_export_name: "intern_agent"
+agent_file_name: "agent"
+framework: "openai"
+
+# === AgentCard metadata ===
+name: "InternDB Reddit Agent"
+description: "Searches Reddit for internship processes, parses posts, writes results, returns summary"
+url: "http://localhost:10003/"
+version: "1.0.0"
+
+defaultInputModes:
+  - "text/plain"
+defaultOutputModes:
+  - "text/plain"
+
+capabilities:
+  streaming: False
+  pushNotifications: True
+
+skills:
+  - id: "reddit_search"
+    name: "Search Reddit and parse posts"
+    description: "Fetches Reddit posts, parses them, writes to file, returns summary"
+    tags:
+      - "reddit"
+      - "internship"
+      - "parsing"
+    examples:
+      - "Topic: Google SRE internship…"
