@@ -1,5 +1,5 @@
 # Stub configuration for Divy A2A agent server
-# Fill in all fields, then run `python cli.py convert`
+# Fill in all fields, then run `divy_a2a convert`
 
 # === Agent and Framework Import ===
 agent_export_name: "intern_agent"
