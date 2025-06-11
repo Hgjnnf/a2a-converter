@@ -1,0 +1,6 @@
+
+a2a-sdk
+agents
+click
+openai
+uvicorn

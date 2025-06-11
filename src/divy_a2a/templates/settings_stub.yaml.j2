@@ -9,8 +9,10 @@ framework: "openai"
 # === AgentCard metadata ===
 name: "My Agent"
 description: "A brief description of what your agent does."
-url: "http://localhost:10000/"
+url: "http://localhost:10000"
 version: "1.0.0"
+host: "localhost"
+port: "10000"
 
 defaultInputModes:
   - "text/plain"
@@ -18,8 +20,8 @@ defaultOutputModes:
   - "text/plain"
 
 capabilities:
-  streaming: true
-  pushNotifications: false
+  streaming: True
+  pushNotifications: False
 
 skills:
   - id: "skill_id"

@@ -99,8 +99,8 @@ class a2aAgentExecutor(AgentExecutor):
 
 def get_agent_card(host: str, port: int) -> AgentCard:
     caps = AgentCapabilities(
-        streaming=false,
-        pushNotifications=true
+        streaming=False,
+        pushNotifications=True
     )
     skills = [        AgentSkill(
             id="reddit_search",
@@ -111,7 +111,7 @@ def get_agent_card(host: str, port: int) -> AgentCard:
         ),    ]
     return AgentCard(
         name="InternDB Reddit Agent",
-        description="Searches Reddit for internship processes, parses posts, writes results, returns summary",
+        description="A brief description of what your agent does.",
         url=f"http://localhost:10003/",
         version="1.0.0",
         defaultInputModes=['text/plain'],
@@ -123,7 +123,7 @@ def get_agent_card(host: str, port: int) -> AgentCard:
 
 @click.command()
 @click.option("--host", default="localhost", help="Bind host")
-@click.option("--port", default=10000, type=int, help="Bind port")
+@click.option("--port", default="10003", type=int, help="Bind port")
 def main(host: str, port: int):
     """Bootstraps the A2A server."""
     executor = a2aAgentExecutor()

@@ -41,7 +41,7 @@ class a2aAgentExecutor(AgentExecutor):
             event_queue.enqueue_event(task)
 
         # 2) Decide between invoke vs. streaming
-        can_stream = {{ capabilities.streaming }}
+        can_stream = {{ capabilities.streaming | capitalize }}
         accept_hdr = context.request.headers.get("accept", "")
         stream_qp  = context.request.query_params.get("stream", "").lower()
         want_stream = can_stream and (
@@ -99,8 +99,8 @@ class a2aAgentExecutor(AgentExecutor):
 
 def get_agent_card(host: str, port: int) -> AgentCard:
     caps = AgentCapabilities(
-        streaming={{ capabilities.streaming | lower }},
-        pushNotifications={{ capabilities.pushNotifications | lower }}
+        streaming={{ capabilities.streaming | capitalize }},
+        pushNotifications={{ capabilities.pushNotifications | capitalize }}
     )
     skills = [
     {%- for skill in skills %}
@@ -126,8 +126,8 @@ def get_agent_card(host: str, port: int) -> AgentCard:
 
 
 @click.command()
-@click.option("--host", default="localhost", help="Bind host")
-@click.option("--port", default=10000, type=int, help="Bind port")
+@click.option("--host", default="{{ host }}", help="Bind host")
+@click.option("--port", default="{{ port }}", type=int, help="Bind port")
 def main(host: str, port: int):
     """Bootstraps the A2A server."""
     executor = a2aAgentExecutor()

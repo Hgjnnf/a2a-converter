@@ -8,9 +8,11 @@ framework: "openai"
 
 # === AgentCard metadata ===
 name: "InternDB Reddit Agent"
-description: "Searches Reddit for internship processes, parses posts, writes results, returns summary"
-url: "http://localhost:10003/"
+description: "A brief description of what your agent does."
+url: "http://localhost:10003"
 version: "1.0.0"
+host: "localhost"
+port: "10003"
 
 defaultInputModes:
   - "text/plain"

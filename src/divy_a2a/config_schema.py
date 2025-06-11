@@ -25,6 +25,8 @@ class CLIConfig(BaseModel):
     name: str
     description: str
     url: HttpUrl
+    host: str
+    port: str
     version: str
     defaultInputModes: List[str]
     defaultOutputModes: List[str]
