@@ -1,0 +1,32 @@
+# Stub configuration for Divy A2A agent server
+# Fill in all fields, then run `python cli.py convert`
+
+# === Agent and Framework Import ===
+agent_export_name: "myAgent"
+agent_file_name: "agent"
+framework: "openai"
+
+# === AgentCard metadata ===
+name: "My Agent"
+description: "A brief description of what your agent does."
+url: "http://localhost:10000/"
+version: "1.0.0"
+
+defaultInputModes:
+  - "text/plain"
+defaultOutputModes:
+  - "text/plain"
+
+capabilities:
+  streaming: true
+  pushNotifications: false
+
+skills:
+  - id: "skill_id"
+    name: "Skill Name"
+    description: "What this skill does."
+    tags:
+      - "tag1"
+      - "tag2"
+    examples:
+      - "Example user query for this skill"

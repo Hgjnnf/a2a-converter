@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "divy_a2a"
+version = "0.1.0"
+dependencies = [
+  "click",
+  "jinja2",
+  "pyyaml",
+  "pydantic"
+]
+
+
+[project.scripts]
+divy_a2a = "divy_a2a.cli:divy_a2a"
+
+[tool.setuptools.packages.find]
+where = ["src"]
