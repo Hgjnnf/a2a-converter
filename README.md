@@ -23,18 +23,21 @@ divy_a2a --help
 
 to see the full list of available commands.
 
+### init
 ```bash
 divy_a2a init
+```
 
 Usage: divy_a2a init [OPTIONS]
 
-  Generate a stub settings.yaml for your agent metadata & settings.
+- Generate a stub settings.yaml for your agent metadata & settings.
 
 Options:
-  -o, --output TEXT  Where to write the stub settings YAML  [default: settings.yaml]
-  --help             Show this message and exit.
+>  -o, --output TEXT  Where to write the stub settings YAML  [default: settings.yaml] <br>
+>  --help             Show this message and exit.
 
 Examples
+```bash
 # write to the default settings.yaml
 divy_a2a init
 
@@ -42,18 +45,30 @@ divy_a2a init
 divy_a2a init --output my_agent_settings.yaml
 ```
 
+### convert
 ```bash
+divy_a2a convert
+```
+
 Usage: divy_a2a convert [OPTIONS]
 
-  Read & validate settings.yaml, then render:
-    • agent_executor.py
-    • task_handler.py
-    • a2a_agent_wrapper.py
+Read & validate settings.yaml, then render:
+> - agent_executor.py
+> - task_handler.py
+> - a2a_agent_wrapper.py
   Also patches requirements.txt and runs pip install.
 
 Options:
-  -c, --config TEXT  Path to your filled-out settings YAML  [default: settings.yaml]
-  --help             Show this message and exit.
+>  -c, --config TEXT  Path to your filled-out settings YAML  [default: settings.yaml] <br>
+>  --help             Show this message and exit.
+
+Examples
+```bash
+# convert using the default settings.yaml
+divy_a2a convert
+
+# convert using a custom config file
+divy_a2a convert --config my_agent_settings.yaml
 ```
 
 ---
