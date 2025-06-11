@@ -7,7 +7,7 @@ agent_file_name: "agent"
 framework: "openai"
 
 # === AgentCard metadata ===
-name: "InternDB Reddit Agent"
+name: "My Agent"
 description: "A brief description of what your agent does."
 url: "http://localhost:10003"
 version: "1.0.0"

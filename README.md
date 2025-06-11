@@ -9,3 +9,5 @@ Make any agents A2A compatible with ease
 
 ## Backlog:
 - Defining url for deployed agents (challenge: how will we know what the public url is)
+- Client can also decide whether or not it wants stream or invocation
+- Error Handling in-task and ending the task not the server

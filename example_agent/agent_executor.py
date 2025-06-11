@@ -42,13 +42,8 @@ class a2aAgentExecutor(AgentExecutor):
 
         # 2) Decide between invoke vs. streaming
         can_stream = False
-        accept_hdr = context.request.headers.get("accept", "")
-        stream_qp  = context.request.query_params.get("stream", "").lower()
-        want_stream = can_stream and (
-            "text/event-stream" in accept_hdr or stream_qp == "true"
-        )
 
-        if not want_stream:
+        if not can_stream:
             # —— INVOKE PATH —— single-shot .invoke()
             try:
                 result = await self.agent.invoke(query, task.contextId)
@@ -94,7 +89,7 @@ class a2aAgentExecutor(AgentExecutor):
             "content": "Task was canceled by client."
         }
         task_handler.handle_event(cancel_event, context, event_queue, task)
-        raise Exception("Cancel not supported for this agent")
+        raise Exception("Agent Task Canceled")
 
 
 def get_agent_card(host: str, port: int) -> AgentCard:
@@ -110,7 +105,7 @@ def get_agent_card(host: str, port: int) -> AgentCard:
             examples=['Topic: Google SRE internship…'],
         ),    ]
     return AgentCard(
-        name="InternDB Reddit Agent",
+        name="My Agent",
         description="A brief description of what your agent does.",
         url=f"http://localhost:10003/",
         version="1.0.0",
