@@ -36,7 +36,7 @@ def init(output):
     env = Environment(loader=FileSystemLoader(str(TEMPLATES_DIR)))
     stub = env.get_template("settings_stub.yaml.j2").render()
     Path(output).write_text(stub)
-    click.echo(f"🌱 Created stub configuration at {output}")
+    click.echo(f"Created stub configuration at {output}")
 
 @divy_a2a.command()
 @click.option("--config", "-c", default="settings.yaml")
@@ -72,9 +72,9 @@ def convert(config):
                 f.write("\n")
             for pkg in to_add:
                 f.write(f"{pkg}\n")
-        click.echo(f"📦 Added to requirements.txt: {', '.join(to_add)}")
+        click.echo(f"Added to requirements.txt: {', '.join(to_add)}")
     else:
-        click.echo("📦 requirements.txt already has all needed dependencies")
+        click.echo("requirements.txt already has all needed dependencies")
 
     # 3. Build a loader that first looks in the framework folder, then base
     framework_dir = FRAMEWORKS_TPL_ROOT / framework
@@ -94,15 +94,15 @@ def convert(config):
         tpl = env.get_template(tpl_name)
         rendered = tpl.render(**conf.dict())
         Path(out_name).write_text(rendered)
-        click.echo(f"✅ Generated {out_name}")
+        click.echo(f"Generated {out_name}")
 
     try:
-        click.echo("📥 Installing dependencies…")
+        click.echo("Installing dependencies…")
         subprocess.check_call([
             sys.executable, "-m", "pip", "install", "-r",
             str(Path("requirements.txt"))
         ])
-        click.echo("✅ Dependencies installed.")
+        click.echo("Dependencies installed.")
     except subprocess.CalledProcessError as e:
         raise click.ClickException(
             f"Failed to install dependencies (exit code {e.returncode}). "

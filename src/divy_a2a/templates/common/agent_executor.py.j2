@@ -43,7 +43,7 @@ class a2aAgentExecutor(AgentExecutor):
         can_stream = {{ capabilities.streaming | capitalize }}
 
         if not can_stream:
-            # —— INVOKE PATH —— single-shot .invoke()
+            # INVOKE PATH single-shot .invoke()
             try:
                 result = await self.agent.invoke(query, task.contextId)
                 task_handler.handle_event(
@@ -57,7 +57,7 @@ class a2aAgentExecutor(AgentExecutor):
                 )
             return
 
-        # —— STREAM PATH —— loop over .stream()
+        # STREAM PATH loop over .stream()
         try:
             async for item in self.agent.stream(query, task.contextId):
                 is_final = task_handler.handle_event(
@@ -77,7 +77,7 @@ class a2aAgentExecutor(AgentExecutor):
         context: RequestContext,
         event_queue: EventQueue,
     ) -> None:
-        # Cancellation requested → final canceled event + exception
+        # Cancellation requested -> final canceled event + exception
         task = context.current_task
         if not task:
             task = new_task(context.message)
@@ -137,7 +137,7 @@ def main(host: str, port: int):
     config = uvicorn.Config(app=app, host=host, port=port, lifespan="auto")
     server = uvicorn.Server(config)
 
-    click.echo(f"🚀 Starting A2A server on {{ url }}")
+    click.echo(f"Starting A2A server on {{ url }}")
     asyncio.run(server.serve())
 
 
