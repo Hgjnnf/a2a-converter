@@ -1,5 +1,5 @@
+python-dotenv
 praw
 openai
 openai-agents
-python-dotenv
 pydantic
